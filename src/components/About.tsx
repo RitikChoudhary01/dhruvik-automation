@@ -33,7 +33,7 @@ export function About() {
 
           <div className="space-y-5 text-pretty text-[1.05rem]">
             <p>
-              Hi, I&apos;m Ritik Choudhary, an AI Automation Developer passionate
+              Hi, I&apos;m Ritik Choudhary, an AI Automation Developer and B.Tech CSE (AI & ML) student at SR University, passionate
               about building intelligent systems that solve real-world problems.
             </p>
             <p>
