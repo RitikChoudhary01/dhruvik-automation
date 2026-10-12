@@ -60,11 +60,11 @@ const capabilitiesData = [
 
 export function Capabilities() {
   return (
-    <section id="capabilities" className="relative bg-[#171717] text-[#F5EBDD] py-14 sm:py-20 lg:py-28 border-t border-[#393939]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.4fr)]">
+    <section id="capabilities" className="relative bg-[#171717] text-[#F5EBDD] py-14 sm:py-20 lg:py-28 border-t border-[#393939] overflow-x-clip max-w-full">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 min-w-0">
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.4fr)] min-w-0 max-w-full">
           {/* Left Column: Sticky Editorial Context */}
-          <div className="lg:sticky lg:top-28 lg:self-start">
+          <div className="lg:sticky lg:top-28 lg:self-start min-w-0 max-w-full">
             <div className="flex items-center gap-2 mb-4">
               <span className="size-2 bg-[#FF6B35]" aria-hidden="true" />
               <p className="font-mono text-xs uppercase tracking-widest text-[#B6B1A9]">
@@ -97,8 +97,8 @@ export function Capabilities() {
           </div>
 
           {/* Right Column: 6 Architectural Cards (Horizontal Scroll on Mobile, 2-Col Grid on Desktop) */}
-          <div>
-            <div className="flex sm:grid sm:grid-cols-2 gap-3.5 sm:gap-4 overflow-x-auto sm:overflow-visible snap-x snap-mandatory pb-3 pt-1 -mx-5 sm:-mx-0 px-[11vw] sm:px-0 no-scrollbar scroll-smooth">
+          <div className="min-w-0 max-w-full overflow-hidden">
+            <div className="flex sm:grid sm:grid-cols-2 gap-3.5 sm:gap-4 overflow-x-auto sm:overflow-visible snap-x snap-mandatory pb-3 pt-1 -mx-5 sm:-mx-0 px-[11vw] sm:px-0 no-scrollbar scroll-smooth min-w-0 max-w-full">
               {capabilitiesData.map((item) => {
                 const Icon = item.icon;
                 return (

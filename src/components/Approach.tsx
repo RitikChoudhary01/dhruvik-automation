@@ -36,8 +36,8 @@ const practices = [
 
 export function Approach() {
   return (
-    <section id="approach" className="bg-[#F5EBDD] text-[#24211E] py-14 sm:py-20 lg:py-28 border-b border-[#DED6C9]">
-      <div className="wrap">
+    <section id="approach" className="bg-[#F5EBDD] text-[#24211E] py-14 sm:py-20 lg:py-28 border-b border-[#DED6C9] overflow-x-clip max-w-full">
+      <div className="wrap min-w-0 max-w-full">
         {/* Header */}
         <div className="max-w-3xl pb-8 sm:pb-12 border-b border-[#DED6C9]">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#6B655D] mb-3">
@@ -53,10 +53,10 @@ export function Approach() {
         </div>
 
         {/* Editorial Split: Code/Schema Excerpt vs Practice List */}
-        <div className="mt-8 sm:mt-14 grid gap-8 lg:gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1.1fr)] lg:items-start">
+        <div className="mt-8 sm:mt-14 grid gap-8 lg:gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1.1fr)] lg:items-start min-w-0 max-w-full">
           {/* Left Column: 6 Engineering Practices (Swipeable on Mobile) */}
-          <div>
-            <div className="flex lg:block overflow-x-auto lg:overflow-visible snap-x snap-mandatory gap-3.5 lg:gap-0 pb-3 -mx-5 sm:-mx-8 lg:mx-0 px-[11vw] sm:px-[14vw] lg:px-0 no-scrollbar lg:divide-y lg:divide-[#DED6C9] scroll-smooth">
+          <div className="min-w-0 max-w-full overflow-hidden">
+            <div className="flex lg:block overflow-x-auto lg:overflow-visible snap-x snap-mandatory gap-3.5 lg:gap-0 pb-3 -mx-5 sm:-mx-8 lg:mx-0 px-[11vw] sm:px-[14vw] lg:px-0 no-scrollbar lg:divide-y lg:divide-[#DED6C9] scroll-smooth min-w-0 max-w-full">
               {practices.map((p) => (
                 <div
                   key={p.num}
@@ -84,9 +84,9 @@ export function Approach() {
           </div>
 
           {/* Right Column: Code Excerpt & Validation Inspector */}
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0 max-w-full overflow-hidden">
             {/* Architectural Code Excerpt */}
-            <div className="border border-[#DED6C9] bg-white p-4 sm:p-6 shadow-sm">
+            <div className="border border-[#DED6C9] bg-white p-4 sm:p-6 shadow-sm min-w-0 max-w-full">
               <div className="flex items-center justify-between border-b border-[#DED6C9] pb-3 mb-3">
                 <div className="flex items-center gap-2 font-mono text-xs text-[#24211E]">
                   <Terminal className="size-3.5 text-[#FF6B35]" />
@@ -96,7 +96,7 @@ export function Approach() {
                   Pydantic Validation
                 </span>
               </div>
-              <pre className="font-mono text-[11px] leading-relaxed text-[#24211E] overflow-x-auto max-h-56 sm:max-h-none overflow-y-auto bg-[#F5EBDD]/60 p-3 sm:p-3.5 border border-[#DED6C9]">
+              <pre className="font-mono text-[11px] leading-relaxed text-[#24211E] overflow-x-auto max-w-full max-h-56 sm:max-h-none overflow-y-auto bg-[#F5EBDD]/60 p-3 sm:p-3.5 border border-[#DED6C9]">
                 <code>{`class InvoiceExtract(BaseModel):
     vendor_name: str = Field(min_length=2)
     invoice_date: date

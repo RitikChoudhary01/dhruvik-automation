@@ -56,7 +56,7 @@ export function Nav() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-200 ${
+      className={`sticky top-0 z-50 w-full max-w-full overflow-x-clip transition-all duration-200 ${
         scrolled
           ? "bg-[#171717]/95 border-b border-[#393939] backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
           : "bg-[#171717] border-b border-[#393939]/60"

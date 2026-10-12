@@ -197,10 +197,10 @@ export function HeroAutomationScene() {
       </div>
 
       {/* Fluid SVG Automation Graph Canvas (No square cards, pure connected flow) */}
-      <div className="relative aspect-[16/11.5] w-full">
+      <div className="relative aspect-[16/11.5] w-full min-w-0 max-w-full overflow-hidden">
         <svg
           viewBox="0 0 620 440"
-          className="size-full overflow-visible"
+          className="size-full overflow-hidden"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >

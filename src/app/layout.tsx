@@ -62,7 +62,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${GeistSans.variable} ${GeistMono.variable} overflow-x-hidden max-w-full`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -71,12 +71,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body className="overflow-x-hidden max-w-full">
         <a href="#main" className="skip-link">
           Skip to content
         </a>
         <Nav />
-        <main id="main">{children}</main>
+        <main id="main" className="overflow-x-hidden max-w-full min-w-0">{children}</main>
         <Footer />
         <script
           type="application/ld+json"

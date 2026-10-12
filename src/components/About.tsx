@@ -4,9 +4,9 @@ import { ArrowUpRight } from "lucide-react";
 
 export function About() {
   return (
-    <section id="about" className="bg-[#F5EBDD] text-[#24211E] py-14 sm:py-20 lg:py-28 border-b border-[#DED6C9]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="grid gap-8 lg:gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.25fr)] items-center">
+    <section id="about" className="bg-[#F5EBDD] text-[#24211E] py-14 sm:py-20 lg:py-28 border-b border-[#DED6C9] overflow-x-clip max-w-full">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 min-w-0 max-w-full">
+        <div className="grid gap-8 lg:gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.25fr)] items-center min-w-0 max-w-full">
           
           {/* Left Column: Authentic Founder Photograph */}
           <div className="relative mx-auto lg:mx-0 w-full max-w-[280px] sm:max-w-md">

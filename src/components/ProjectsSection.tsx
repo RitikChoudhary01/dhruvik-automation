@@ -8,8 +8,8 @@ export function ProjectsSection() {
   const p3 = projects.find((p) => p.slug === "ai-invoice-parser")!;
 
   return (
-    <section id="projects" className="bg-[#171717] text-[#F5EBDD] py-14 sm:py-20 lg:py-28 border-b border-[#393939]">
-      <div className="wrap">
+    <section id="projects" className="bg-[#171717] text-[#F5EBDD] py-14 sm:py-20 lg:py-28 border-b border-[#393939] overflow-x-clip max-w-full">
+      <div className="wrap min-w-0 max-w-full">
         {/* Section Header */}
         <div className="max-w-3xl pb-8 sm:pb-12 border-b border-[#393939]">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#B6B1A9] mb-3">
@@ -52,14 +52,14 @@ export function ProjectsSection() {
           </p>
 
           {/* Technical Illustration 01: Horizontal Workflow Diagram (Swipeable on Mobile) */}
-          <div className="mt-8 border border-[#393939] bg-[#242424] p-4 sm:p-6">
+          <div className="mt-8 border border-[#393939] bg-[#242424] p-4 sm:p-6 min-w-0 max-w-full overflow-hidden">
             <div className="flex items-center justify-between gap-2 border-b border-[#393939] pb-3 mb-4">
               <p className="font-mono text-[10px] uppercase tracking-widest text-[#FF6B35] font-semibold">
                 SYSTEM WORKFLOW ARCHITECTURE
               </p>
               <span className="font-mono text-[10px] text-[#B6B1A9]">7 Resilient Stages</span>
             </div>
-            <div className="flex sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-2 overflow-x-auto sm:overflow-visible snap-x no-scrollbar pb-2 pt-1 -mx-2 px-2 sm:mx-0 sm:px-0">
+            <div className="flex sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-2 overflow-x-auto sm:overflow-visible snap-x no-scrollbar pb-2 pt-1 -mx-2 px-2 sm:mx-0 sm:px-0 min-w-0 max-w-full">
               {[
                 "Incoming message",
                 "Input validation",
@@ -102,7 +102,7 @@ export function ProjectsSection() {
         </article>
 
         {/* Case Studies 02 & 03: Horizontal Snap Scroll on Mobile / 2-Col Grid on Desktop */}
-        <div className="flex lg:grid lg:grid-cols-2 gap-3.5 lg:gap-12 overflow-x-auto lg:overflow-visible snap-x snap-mandatory pb-4 pt-8 sm:pt-16 -mx-5 sm:-mx-8 lg:mx-0 px-[11vw] sm:px-[14vw] lg:px-0 no-scrollbar scroll-smooth">
+        <div className="flex lg:grid lg:grid-cols-2 gap-3.5 lg:gap-12 overflow-x-auto lg:overflow-visible snap-x snap-mandatory pb-4 pt-8 sm:pt-16 -mx-5 sm:-mx-8 lg:mx-0 px-[11vw] sm:px-[14vw] lg:px-0 no-scrollbar scroll-smooth min-w-0 max-w-full">
           {/* Project 02: Lead Management Pipeline */}
           <article className="w-[76vw] sm:w-[62vw] lg:w-auto min-w-[76vw] sm:min-w-[62vw] lg:min-w-0 max-w-[76vw] sm:max-w-[62vw] lg:max-w-none snap-center flex-shrink-0 lg:flex-shrink border border-[#393939] bg-[#242424] p-5 sm:p-8 flex flex-col justify-between">
             <div>

@@ -31,8 +31,8 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="process" className="bg-[#242424] text-[#F5EBDD] py-14 sm:py-20 lg:py-28 border-b border-[#393939]">
-      <div className="wrap">
+    <section id="process" className="bg-[#242424] text-[#F5EBDD] py-14 sm:py-20 lg:py-28 border-b border-[#393939] overflow-x-clip max-w-full">
+      <div className="wrap min-w-0 max-w-full">
         {/* Section Header */}
         <div className="max-w-3xl pb-8 sm:pb-12 border-b border-[#393939]">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#B6B1A9] mb-3">
@@ -48,14 +48,14 @@ export function Process() {
         </div>
 
         {/* Horizontal Timeline (Desktop) & Vertical (Mobile) */}
-        <div className="mt-14 relative">
+        <div className="mt-14 relative min-w-0 max-w-full overflow-hidden">
           {/* Connecting Line (Desktop) */}
           <div
             aria-hidden="true"
             className="hidden lg:block absolute top-[2.25rem] inset-x-8 h-px bg-[#393939]"
           />
 
-          <ol className="flex lg:grid lg:grid-cols-4 gap-3.5 sm:gap-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory pb-3 pt-1 -mx-5 sm:-mx-8 lg:mx-0 px-[11vw] sm:px-[14vw] lg:px-0 no-scrollbar relative scroll-smooth">
+          <ol className="flex lg:grid lg:grid-cols-4 gap-3.5 sm:gap-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory pb-3 pt-1 -mx-5 sm:-mx-8 lg:mx-0 px-[11vw] sm:px-[14vw] lg:px-0 no-scrollbar relative scroll-smooth min-w-0 max-w-full">
             {steps.map((s, i) => (
               <li key={s.num} className="w-[76vw] sm:w-[50vw] lg:w-auto min-w-[76vw] sm:min-w-[50vw] lg:min-w-0 max-w-[76vw] sm:max-w-[50vw] lg:max-w-none snap-center flex-shrink-0 lg:flex-shrink relative flex flex-col justify-between">
                 {/* Step Marker Node */}

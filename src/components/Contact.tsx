@@ -4,8 +4,8 @@ import { ArrowUpRight, Mail, Phone } from "lucide-react";
 
 export function Contact() {
   return (
-    <section id="contact" className="bg-[#171717] text-[#F5EBDD] py-14 sm:py-20 lg:py-28 border-b border-[#393939]">
-      <div className="wrap grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:items-start">
+    <section id="contact" className="bg-[#171717] text-[#F5EBDD] py-14 sm:py-20 lg:py-28 border-b border-[#393939] overflow-x-clip max-w-full">
+      <div className="wrap grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] lg:items-start min-w-0 max-w-full">
         {/* Left Column: Direct Inquiries */}
         <div className="space-y-6">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#B6B1A9] mb-3">

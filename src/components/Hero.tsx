@@ -11,8 +11,8 @@ const tech = [
 
 export function Hero() {
   return (
-    <section id="top" className="relative bg-[#171717] pt-4 pb-8 sm:pt-6 sm:pb-10 border-b border-[#393939]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 grid gap-6 lg:gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,1.2fr)] lg:items-center">
+    <section id="top" className="relative bg-[#171717] pt-4 pb-8 sm:pt-6 sm:pb-10 border-b border-[#393939] overflow-x-clip max-w-full">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 grid gap-6 lg:gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,1.2fr)] lg:items-center min-w-0 max-w-full">
         {/* Left Editorial Content */}
         <div className="space-y-3.5">
           {/* Top Label */}
@@ -105,7 +105,7 @@ export function Hero() {
         </div>
 
         {/* Right 3D Spatial Automation Network Visualization */}
-        <div className="w-full">
+        <div className="w-full min-w-0 max-w-full overflow-hidden">
           <HeroAutomationScene />
         </div>
       </div>

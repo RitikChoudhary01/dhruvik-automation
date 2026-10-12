@@ -42,8 +42,8 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="bg-[#F5EBDD] text-[#24211E] py-14 sm:py-20 lg:py-28 border-b border-[#DED6C9]">
-      <div className="wrap">
+    <section id="services" className="bg-[#F5EBDD] text-[#24211E] py-14 sm:py-20 lg:py-28 border-b border-[#DED6C9] overflow-x-clip max-w-full">
+      <div className="wrap min-w-0 max-w-full">
         {/* Section Header */}
         <div className="max-w-3xl pb-8 sm:pb-12 border-b border-[#DED6C9]">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#6B655D] mb-3">
@@ -59,7 +59,8 @@ export function Services() {
         </div>
 
         {/* Horizontal Snap Scroll on Mobile / Editorial Rows on Desktop */}
-        <div className="mt-6 lg:mt-0 flex lg:block overflow-x-auto lg:overflow-visible snap-x snap-mandatory gap-3.5 lg:gap-0 pb-4 pt-1 -mx-5 sm:-mx-8 lg:mx-0 px-[11vw] sm:px-[14vw] lg:px-0 no-scrollbar lg:divide-y lg:divide-[#DED6C9] scroll-smooth">
+        <div className="mt-6 lg:mt-0 min-w-0 max-w-full overflow-hidden">
+          <div className="flex lg:block overflow-x-auto lg:overflow-visible snap-x snap-mandatory gap-3.5 lg:gap-0 pb-4 pt-1 -mx-5 sm:-mx-8 lg:mx-0 px-[11vw] sm:px-[14vw] lg:px-0 no-scrollbar lg:divide-y lg:divide-[#DED6C9] scroll-smooth min-w-0 max-w-full">
           {services.map((s) => (
             <article
               key={s.num}
@@ -133,6 +134,7 @@ export function Services() {
               </div>
             </article>
           ))}
+          </div>
         </div>
 
         {/* Mobile Swipe Hint */}

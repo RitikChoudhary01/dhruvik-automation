@@ -4,8 +4,8 @@ import { CurrentYear } from "./CurrentYear";
 
 export function Footer() {
   return (
-    <footer className="bg-[#171717] text-[#F5EBDD] border-t border-[#393939] py-14 sm:py-16">
-      <div className="wrap">
+    <footer className="bg-[#171717] text-[#F5EBDD] border-t border-[#393939] py-14 sm:py-16 overflow-x-clip max-w-full">
+      <div className="wrap min-w-0 max-w-full">
         <div className="grid gap-10 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)_minmax(0,1fr)]">
           {/* Brand & Positioning */}
           <div className="space-y-4">

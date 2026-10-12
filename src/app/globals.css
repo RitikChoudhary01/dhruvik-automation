@@ -58,11 +58,14 @@
     color-scheme: dark;
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   body {
     min-height: 100vh;
-    overflow-x: clip;
+    overflow-x: hidden;
+    max-width: 100vw;
     font-family: var(--font-sans);
     color: var(--color-cream);
     line-height: 1.6;
