@@ -1,125 +1,170 @@
 import Image from "next/image";
 import { site } from "@/lib/site";
+import { ArrowUpRight } from "lucide-react";
 
 export function About() {
   return (
-    <section id="about" className="section">
-      <div className="wrap grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
-        
-        {/* Left Column: Portrait */}
-        <div className="flex flex-col items-center justify-start lg:items-end lg:pr-6 lg:pt-4">
-          <div className="relative size-56 sm:size-64 lg:size-72 overflow-hidden rounded-full border-2 border-signal/50 shadow-[0_0_40px_-5px_rgba(86,212,228,0.3)]">
-            <Image
-              src="/profile_cropped.png"
-              alt="Ritik Choudhary, AI Automation Developer"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 256px, 288px"
-              priority
+    <section id="about" className="bg-[#F5EBDD] text-[#24211E] py-14 sm:py-20 lg:py-28 border-b border-[#DED6C9]">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <div className="grid gap-8 lg:gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.25fr)] items-center">
+          
+          {/* Left Column: Authentic Founder Photograph */}
+          <div className="relative mx-auto lg:mx-0 w-full max-w-[280px] sm:max-w-md">
+            <div className="relative aspect-square w-full border border-[#DED6C9] bg-[#EAE0D0] overflow-hidden shadow-lg">
+              <Image
+                src="/profile_clean.png"
+                alt="Ritik Choudhary, AI Automation Developer"
+                fill
+                className="object-cover object-top hover:scale-[1.02] transition-transform duration-500"
+                sizes="(max-width: 1024px) 100vw, 448px"
+                priority
+              />
+              
+              {/* Refined Metadata Strip */}
+              <div className="absolute bottom-0 inset-x-0 bg-[#171717]/90 backdrop-blur-sm text-[#F5EBDD] px-4 py-2.5 flex items-center justify-between font-mono text-xs border-t border-[#393939]">
+                <span className="font-medium tracking-wide">RITIK CHOUDHARY</span>
+                <span className="text-[#FF6B35] font-semibold text-[11px] uppercase tracking-wider">
+                  Founder &amp; Engineer
+                </span>
+              </div>
+            </div>
+
+            {/* Subtle Tangerine Corner Accent */}
+            <div
+              aria-hidden="true"
+              className="hidden sm:block absolute -top-2 -left-2 size-4 border-t-2 border-l-2 border-[#FF6B35]"
+            />
+            <div
+              aria-hidden="true"
+              className="hidden sm:block absolute -bottom-2 -right-2 size-4 border-b-2 border-r-2 border-[#FF6B35]"
             />
           </div>
-        </div>
 
-        {/* Right Column: Story */}
-        <div className="space-y-6 text-mute">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-signal">
-              A little about me
-            </p>
-            <h2 className="h2 mt-3 text-bone">
-              Building smarter systems with AI and automation.
-            </h2>
-          </div>
-
-          <div className="space-y-5 text-pretty text-[1.05rem]">
-            <p>
-              Hi, I&apos;m Ritik Choudhary, an AI Automation Developer and B.Tech CSE (AI & ML) student at SR University, passionate
-              about building intelligent systems that solve real-world problems.
-            </p>
-            <p>
-              I work with AI agents, n8n, APIs, webhooks, and workflow automation
-              to build solutions that streamline business operations, automate
-              repetitive tasks, and improve lead management.
-            </p>
-            <p>
-              My approach is simple: understand the problem, design the right
-              workflow, build a practical solution, and continuously improve it.
-            </p>
-            <p>
-              I&apos;m constantly learning, experimenting with new technologies,
-              and turning ideas into functional projects.
-            </p>
-          </div>
-
-          <div className="border-t border-line pt-6">
-            <p className="font-medium text-bone mb-4">The Business Impact of Automation</p>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-              <div className="rounded-lg border border-line/50 bg-surface/50 p-3">
-                <p className="text-2xl font-bold text-signal">24/7</p>
-                <p className="mt-1 text-xs text-mute">Instant lead response</p>
+          {/* Right Column: Editorial Narrative & Channels */}
+          <div className="space-y-6">
+            <div>
+              <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#6B655D] mb-3">
+                <span className="size-2 bg-[#FF6B35]" aria-hidden="true" />
+                <span>The Person Behind The Systems</span>
               </div>
-              <div className="rounded-lg border border-line/50 bg-surface/50 p-3">
-                <p className="text-2xl font-bold text-leaf">10h+</p>
-                <p className="mt-1 text-xs text-mute">Saved manually weekly</p>
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-[#24211E] leading-[1.12]">
+                Engineering practical solutions, one workflow at a time.
+              </h2>
+            </div>
+
+            <div className="space-y-4 text-base sm:text-[1.05rem] text-[#24211E]/90 leading-relaxed">
+              <p>
+                I&apos;m <strong className="font-bold text-[#24211E]">Ritik Choudhary</strong>, an AI Automation Developer and B.Tech CSE (AI &amp; ML) student at SR University.
+              </p>
+              <p>
+                I work with <strong className="font-semibold text-[#24211E]">n8n, Python, APIs, databases, and AI models</strong> to build systems that solve practical operational problems for growing businesses.
+              </p>
+              <p className="text-[#6B655D]">
+                My approach starts with understanding the work, identifying bottlenecks, designing the workflow, and testing how it behaves when things go wrong—not just when everything goes smoothly.
+              </p>
+            </div>
+
+            {/* Engineering Principles */}
+            <div className="pt-2 grid sm:grid-cols-2 gap-3 font-mono text-xs text-[#24211E]">
+              <div className="border border-[#DED6C9] bg-white/70 p-3.5">
+                <span className="text-[#FF6B35] font-bold block mb-1 uppercase tracking-wider">
+                  Practical Focus
+                </span>
+                <span className="text-[#6B655D]">No AI for the sake of AI. Only where it delivers real operational leverage.</span>
               </div>
-              <div className="rounded-lg border border-line/50 bg-surface/50 p-3 sm:col-span-1 col-span-2">
-                <p className="text-2xl font-bold text-cobalt">0</p>
-                <p className="mt-1 text-xs text-mute">Data entry errors</p>
+              <div className="border border-[#DED6C9] bg-white/70 p-3.5">
+                <span className="text-[#FF6B35] font-bold block mb-1 uppercase tracking-wider">
+                  Strict Reliability
+                </span>
+                <span className="text-[#6B655D]">Explicit error paths, deduplication logic, and atomic database persistence.</span>
               </div>
             </div>
-          </div>
 
-          <div className="pt-4">
-            <p className="mb-5 text-[1.05rem] font-medium text-bone">
-              Let&apos;s connect and build something useful.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href={site.github}
-                className="btn btn-ghost !p-2.5"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="size-5" aria-hidden="true">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-              </a>
-              <a
-                href={site.linkedin}
-                className="btn btn-ghost !p-2.5"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="size-5" aria-hidden="true">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </a>
-              <a 
-                href={`mailto:${site.email}`} 
-                className="btn btn-ghost !p-2.5"
-                aria-label="Email"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="size-5" aria-hidden="true">
-                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
-                </svg>
-              </a>
-              <a
-                href="https://wa.me/917260921049"
-                className="btn btn-ghost !text-sm !text-leaf !border-leaf/30 hover:!bg-leaf/5"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="size-4" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
-                </svg>
-                +91 72609 21049
-              </a>
+            {/* Social Profiles & Direct Contact Badges */}
+            <div className="pt-4 border-t border-[#DED6C9]">
+              <p className="font-mono text-xs uppercase tracking-widest text-[#6B655D] mb-3">
+                Direct Channels &amp; Profiles:
+              </p>
+              <div className="flex flex-wrap gap-2 text-xs font-mono">
+                <a
+                  href={site.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 border border-[#0A66C2]/40 bg-[#0A66C2]/10 text-[#24211E] px-3 py-1.5 font-medium hover:bg-[#0A66C2] hover:text-white transition-colors"
+                >
+                  <span className="size-2 rounded-full bg-[#0A66C2]" aria-hidden="true" />
+                  <span>LinkedIn</span>
+                  <ArrowUpRight className="size-3 text-[#0A66C2]" />
+                </a>
+
+                <a
+                  href={site.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 border border-[#25D366]/50 bg-[#25D366]/15 text-[#24211E] px-3 py-1.5 font-medium hover:bg-[#25D366] hover:text-white transition-colors"
+                >
+                  <span className="size-2 rounded-full bg-[#25D366]" aria-hidden="true" />
+                  <span>WhatsApp: +91 72609 21049</span>
+                  <ArrowUpRight className="size-3 text-[#25D366]" />
+                </a>
+
+                <a
+                  href={site.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 border border-[#E4405F]/40 bg-[#E4405F]/10 text-[#24211E] px-3 py-1.5 hover:bg-[#E4405F] hover:text-white transition-colors"
+                >
+                  <span className="size-2 rounded-full bg-[#E4405F]" aria-hidden="true" />
+                  <span>Instagram</span>
+                  <ArrowUpRight className="size-3 text-[#E4405F]" />
+                </a>
+
+                <a
+                  href={site.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 border border-[#1877F2]/40 bg-[#1877F2]/10 text-[#24211E] px-3 py-1.5 hover:bg-[#1877F2] hover:text-white transition-colors"
+                >
+                  <span className="size-2 rounded-full bg-[#1877F2]" aria-hidden="true" />
+                  <span>Facebook</span>
+                  <ArrowUpRight className="size-3 text-[#1877F2]" />
+                </a>
+
+                <a
+                  href={site.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 border border-[#DED6C9] bg-white px-3 py-1.5 text-[#24211E] hover:border-[#171717] transition-colors"
+                >
+                  <span className="size-2 rounded-full bg-[#171717]" aria-hidden="true" />
+                  <span>GitHub</span>
+                  <ArrowUpRight className="size-3" />
+                </a>
+
+                {/* Work Email */}
+                <a
+                  href={`mailto:${site.workEmail}`}
+                  className="inline-flex items-center gap-1.5 border border-[#0078D4]/40 bg-[#0078D4]/10 text-[#24211E] px-3 py-1.5 hover:bg-[#0078D4] hover:text-white transition-colors"
+                >
+                  <span className="size-2 rounded-full bg-[#0078D4]" aria-hidden="true" />
+                  <span>Work: {site.workEmail}</span>
+                  <ArrowUpRight className="size-3 text-[#0078D4]" />
+                </a>
+
+                {/* Personal Gmail */}
+                <a
+                  href={`mailto:${site.personalEmail}`}
+                  className="inline-flex items-center gap-1.5 border border-[#EA4335]/40 bg-[#EA4335]/10 text-[#24211E] px-3 py-1.5 hover:bg-[#EA4335] hover:text-white transition-colors"
+                >
+                  <span className="size-2 rounded-full bg-[#EA4335]" aria-hidden="true" />
+                  <span>Personal: {site.personalEmail}</span>
+                  <ArrowUpRight className="size-3 text-[#EA4335]" />
+                </a>
+              </div>
             </div>
+
           </div>
         </div>
-
       </div>
     </section>
   );

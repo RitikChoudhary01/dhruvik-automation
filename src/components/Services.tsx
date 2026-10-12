@@ -1,117 +1,144 @@
 import { ServiceCta } from "./ServiceCta";
+import { ArrowRight } from "lucide-react";
 
-const primary = [
+const services = [
   {
-    name: "AI Workflow Automation",
-    service: "AI workflow automation",
-    icon: "⚙",
+    num: "01",
+    name: "Lead Response Systems",
+    service: "Lead capture and follow-up",
+    tech: "n8n · Webhooks · Supabase · Slack",
     problem:
-      "Staff copy data between tools, forward messages and update sheets by hand, and steps get skipped when the day gets busy.",
-    build:
-      "n8n workflows that connect your apps through APIs and webhooks, validate incoming data, call an AI model only where judgment is needed, and log every run.",
-    benefit: "Fewer manual handoffs, and one place to see what ran and what failed.",
-    cta: "Automate a workflow",
+      "Enquiries arrive through multiple channels (forms, social ads, direct emails) and follow-ups become inconsistent or delayed while staff are occupied.",
+    solution:
+      "Capture incoming leads instantly, validate and deduplicate their details, update central records, trigger staff notifications, and schedule automated follow-ups.",
+    diagram: ["Form / Ads Ingestion", "Schema Deduplication", "CRM & DB Write", "Staff Dispatch"],
+    cta: "Configure a Lead System",
   },
   {
+    num: "02",
     name: "WhatsApp AI Receptionist",
     service: "WhatsApp AI receptionist",
-    icon: "💬",
+    tech: "WhatsApp Cloud API · FastAPI · Gemini · PostgreSQL",
     problem:
-      "Customers message after hours or while staff are busy. Unanswered enquiries go cold, and booking by chat is slow.",
-    build:
-      "A WhatsApp assistant that answers from information you approve, collects customer details, checks availability, books without double-booking, and hands over to a person when it is unsure.",
-    benefit: "Faster first replies, and bookings captured in a database or calendar instead of chat threads.",
-    cta: "Plan a receptionist",
+      "Appointment-based businesses spend hours responding to repetitive enquiries and collecting scheduling details, losing after-hours opportunities.",
+    solution:
+      "Automate supported customer enquiries, collect required contact details, check database availability, and connect booking requests with seamless human escalation.",
+    diagram: ["Customer WhatsApp", "Intent Classification", "Calendar Verification", "Human Handoff"],
+    cta: "Plan an AI Receptionist",
   },
   {
-    name: "Lead Capture and Follow-Up",
-    service: "Lead capture and follow-up",
-    icon: "📥",
-    problem:
-      "Leads arrive from forms, ads and messages, reach a sheet late, and follow-up depends on someone remembering.",
-    build:
-      "An intake flow that cleans each lead, flags duplicates, scores it against your rules, notifies the right person, writes to Google Sheets or Supabase, and schedules follow-ups.",
-    benefit: "More consistent follow-up, and a clear record of where every lead stands.",
-    cta: "Set up lead handling",
-  },
-];
-
-const secondary = [
-  {
-    name: "AI agents for a specific task",
-    service: "AI agent for a specific task",
-    text: "Assistants connected to your tools and data, working inside rules instead of free-form replies.",
-  },
-  {
-    name: "Document processing",
+    num: "03",
+    name: "Document Processing",
     service: "Document processing",
-    text: "Extract fields from invoices and forms into validated JSON, with a path for incomplete documents.",
-  },
-  {
-    name: "Knowledge assistants and support",
-    service: "Knowledge assistant or support bot",
-    text: "Answer common questions from approved documents, avoid unsupported answers and route hard ones to a person.",
+    tech: "Python · Pydantic · Vision Models · REST APIs",
+    problem:
+      "Operations teams manually copy and paste unstructured information from vendor invoices, contracts, and receipts into internal ERPs or spreadsheets.",
+    solution:
+      "Extract relevant fields into structured JSON, strictly validate against typed Pydantic schemas, and automatically route uncertain or incomplete documents for human review.",
+    diagram: ["Document Upload", "Field Extraction", "Pydantic Schema Check", "Audit Log & ERP"],
+    cta: "Automate Document Workflows",
   },
 ];
 
 export function Services() {
   return (
-    <section id="services" className="section">
+    <section id="services" className="bg-[#F5EBDD] text-[#24211E] py-14 sm:py-20 lg:py-28 border-b border-[#DED6C9]">
       <div className="wrap">
-        <div className="max-w-2xl">
-          <h2 className="h2">Three systems I focus on</h2>
-          <p className="prose-tight mt-4">
-            Each targets a specific place where businesses lose time or customers. The benefits listed
-            are what these systems are designed to do — not measured results from past clients.
+        {/* Section Header */}
+        <div className="max-w-3xl pb-8 sm:pb-12 border-b border-[#DED6C9]">
+          <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#6B655D] mb-3">
+            <span className="size-2 bg-[#FF6B35]" />
+            <span>SERVICES &amp; CAPABILITIES</span>
+          </div>
+          <h2 className="font-display text-3xl sm:text-5xl lg:text-[3.6rem] font-bold tracking-tight text-[#24211E] leading-[1.05]">
+            Automation for the work that slows you down.
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-[#6B655D] leading-relaxed max-w-2xl font-normal">
+            Bespoke automation systems engineered to eliminate manual bottlenecks, capture every revenue opportunity, and run 24/7 without fail.
           </p>
         </div>
 
-        <div className="mt-12 space-y-5">
-          {primary.map((s) => (
-            <article key={s.name} className="panel p-6 transition-all duration-200 hover:border-line-strong sm:p-8">
-              <div className="grid gap-8 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,2fr)] lg:gap-12">
-                <div>
-                  <span aria-hidden className="text-2xl">{s.icon}</span>
-                  <h3 className="h3 mt-3 text-xl sm:text-2xl">{s.name}</h3>
-                </div>
-                <div className="grid gap-6 md:grid-cols-3">
-                  <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-widest text-mute">The problem</h4>
-                    <p className="mt-2 text-sm text-mute">{s.problem}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-widest text-mute">What I build</h4>
-                    <p className="mt-2 text-sm text-mute">{s.build}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-widest text-mute">Intended benefit</h4>
-                    <p className="mt-2 text-sm text-mute">{s.benefit}</p>
-                  </div>
+        {/* Horizontal Snap Scroll on Mobile / Editorial Rows on Desktop */}
+        <div className="mt-6 lg:mt-0 flex lg:block overflow-x-auto lg:overflow-visible snap-x snap-mandatory gap-3.5 lg:gap-0 pb-4 pt-1 -mx-5 sm:-mx-8 lg:mx-0 px-[11vw] sm:px-[14vw] lg:px-0 no-scrollbar lg:divide-y lg:divide-[#DED6C9] scroll-smooth">
+          {services.map((s) => (
+            <article
+              key={s.num}
+              className="w-[76vw] sm:w-[62vw] lg:w-auto min-w-[76vw] sm:min-w-[62vw] lg:min-w-0 max-w-[76vw] sm:max-w-[62vw] lg:max-w-none snap-center flex-shrink-0 lg:flex-shrink bg-white/95 lg:bg-transparent border border-[#DED6C9] lg:border-none p-5 sm:p-6 lg:p-0 py-6 sm:py-8 lg:py-16 grid gap-6 lg:gap-8 lg:grid-cols-[10rem_minmax(0,1.2fr)_minmax(0,1.4fr)] lg:items-start flex flex-col justify-between shadow-sm lg:shadow-none"
+            >
+              {/* Column 1: Oversized Service Number */}
+              <div>
+                <span className="font-mono text-4xl sm:text-6xl font-light text-[#FF6B35] tracking-tight block">
+                  {s.num}
+                </span>
+                <span className="font-mono text-[11px] uppercase tracking-wider text-[#6B655D] mt-1 block">
+                  {s.tech}
+                </span>
+              </div>
+
+              {/* Column 2: Service Title & Problem */}
+              <div className="space-y-4 pr-0 lg:pr-6">
+                <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#24211E] tracking-tight">
+                  {s.name}
+                </h3>
+                <div className="border-l-2 border-[#DED6C9] pl-4">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#6B655D] font-semibold">
+                    THE PROBLEM
+                  </p>
+                  <p className="mt-1 text-sm text-[#6B655D] leading-relaxed">
+                    {s.problem}
+                  </p>
                 </div>
               </div>
-              <div className="mt-7 border-t border-line pt-5">
-                <ServiceCta service={s.service} className="btn btn-ghost">
-                  {s.cta}
-                </ServiceCta>
+
+              {/* Column 3: The Solution & Technical Pipeline Flow */}
+              <div className="space-y-6">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#24211E] font-semibold">
+                    THE SOLUTION
+                  </p>
+                  <p className="mt-1 text-sm sm:text-base text-[#24211E] leading-relaxed">
+                    {s.solution}
+                  </p>
+                </div>
+
+                {/* Minimal Architectural Diagram */}
+                <div className="border border-[#DED6C9] bg-white/70 p-3 sm:p-4">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#6B655D] mb-2 font-medium">
+                    EXECUTION PIPELINE
+                  </p>
+                  <div className="flex flex-wrap items-center gap-1.5 text-xs font-mono">
+                    {s.diagram.map((node, i) => (
+                      <span key={node} className="inline-flex items-center gap-1.5">
+                        <span className="bg-[#F5EBDD] text-[#24211E] border border-[#DED6C9] px-2 py-1 text-[11px] font-medium">
+                          {node}
+                        </span>
+                        {i < s.diagram.length - 1 && (
+                          <span className="text-[#FF6B35] font-bold">&rarr;</span>
+                        )}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Interactive CTA */}
+                <div>
+                  <ServiceCta
+                    service={s.service}
+                    className="group inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wider text-[#24211E] hover:text-[#FF6B35] transition-colors"
+                  >
+                    <span>{s.cta}</span>
+                    <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1 text-[#FF6B35]" />
+                  </ServiceCta>
+                </div>
               </div>
             </article>
           ))}
         </div>
 
-        <div className="mt-14">
-          <h3 className="h3">Also available</h3>
-          <ul className="mt-5 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-3">
-            {secondary.map((s) => (
-              <li key={s.name} className="flex flex-col bg-surface p-5">
-                <h4 className="font-medium">{s.name}</h4>
-                <p className="mt-2 flex-1 text-sm text-mute">{s.text}</p>
-                <ServiceCta service={s.service} className="link mt-4 text-sm">
-                  Ask about this
-                </ServiceCta>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Mobile Swipe Hint */}
+        <p className="lg:hidden font-mono text-[10px] text-[#6B655D] text-center mt-3 tracking-wider">
+          ← SWIPE 3 SERVICES →
+        </p>
       </div>
     </section>
   );

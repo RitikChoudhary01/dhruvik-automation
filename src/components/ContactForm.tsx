@@ -9,6 +9,7 @@ import {
   type FieldErrors,
 } from "@/lib/validation";
 import { site } from "@/lib/site";
+import { CheckCircle2, AlertTriangle, ArrowRight } from "lucide-react";
 
 type Status =
   | { kind: "idle" }
@@ -28,7 +29,7 @@ const empty: ContactInput = {
 };
 
 const inputClass =
-  "w-full rounded-lg border border-line-strong bg-surface-2 px-3.5 py-2.5 text-[0.95rem] text-bone placeholder:text-mute/70 transition-[border-color,box-shadow] duration-150 focus:border-signal focus:outline-none focus:ring-2 focus:ring-signal/30 aria-[invalid=true]:border-danger aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-danger/20";
+  "w-full rounded-none border border-[#DED6C9] bg-[#F5EBDD] px-3.5 py-2.5 text-sm font-sans text-[#24211E] placeholder:text-[#6B655D]/70 transition-colors focus:border-[#FF6B35] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#FF6B35] aria-[invalid=true]:border-[#E04535] aria-[invalid=true]:ring-1 aria-[invalid=true]:ring-[#E04535]";
 
 function mailtoHref(v: ContactInput) {
   const body = [
@@ -63,18 +64,18 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block text-sm font-medium">
+      <label htmlFor={id} className="mb-1.5 block font-mono text-xs uppercase tracking-wider text-[#F5EBDD]">
         {label}
-        {optional ? <span className="font-normal text-mute"> (optional)</span> : null}
+        {optional ? <span className="font-normal text-[#B6B1A9]"> (optional)</span> : null}
       </label>
       {children}
       {hint && !error ? (
-        <p id={`${id}-hint`} className="mt-1.5 text-xs text-mute">
+        <p id={`${id}-hint`} className="mt-1 font-mono text-[11px] text-[#B6B1A9]">
           {hint}
         </p>
       ) : null}
       {error ? (
-        <p id={`${id}-error`} role="alert" className="mt-1.5 text-sm text-danger">
+        <p id={`${id}-error`} role="alert" className="mt-1 font-mono text-xs text-[#E04535]">
           {error}
         </p>
       ) : null}
@@ -170,13 +171,21 @@ export function ContactForm() {
 
   if (status.kind === "sent") {
     return (
-      <div className="panel p-6 sm:p-8" role="status">
-        <h3 className="h3">Message sent</h3>
-        <p className="prose-tight mt-3">
-          Thanks. I&apos;ll read it and reply to the email address you gave with questions or a suggested approach.
+      <div className="border border-[#FF6B35] bg-[#242424] p-8 text-[#F5EBDD]" role="status">
+        <div className="flex items-center gap-2 text-[#FF6B35] mb-2 font-mono text-xs uppercase tracking-widest font-semibold">
+          <CheckCircle2 className="size-4" />
+          <span>INQUIRY RECEIVED</span>
+        </div>
+        <h3 className="font-display text-2xl font-bold text-[#F5EBDD]">Message sent</h3>
+        <p className="mt-3 text-sm text-[#B6B1A9] leading-relaxed">
+          Thanks for reaching out. I personally review every inquiry and will reply to your email address with specific scoping questions or a suggested architectural direction.
         </p>
-        <button type="button" className="btn btn-ghost mt-6" onClick={() => setStatus({ kind: "idle" })}>
-          Send another message
+        <button
+          type="button"
+          className="btn btn-secondary-dark font-mono text-xs uppercase tracking-wider rounded-none mt-6"
+          onClick={() => setStatus({ kind: "idle" })}
+        >
+          Send another inquiry
         </button>
       </div>
     );
@@ -185,7 +194,12 @@ export function ContactForm() {
   const busy = status.kind === "submitting";
 
   return (
-    <form onSubmit={onSubmit} noValidate className="panel space-y-5 p-6 sm:p-8" aria-label="Project inquiry">
+    <form
+      onSubmit={onSubmit}
+      noValidate
+      className="border border-[#393939] bg-[#242424] p-6 sm:p-8 space-y-5"
+      aria-label="Project inquiry"
+    >
       <div className="grid gap-5 sm:grid-cols-2">
         <Field id="field-name" label="Name" error={errors.name}>
           <input type="text" autoComplete="name" className={inputClass} {...props("name")} />
@@ -216,7 +230,7 @@ export function ContactForm() {
         error={errors.message}
         hint="What does your team do by hand, and where does it break down?"
       >
-        <textarea rows={5} maxLength={2000} className={`${inputClass} resize-y`} {...props("message", { hint: true })} />
+        <textarea rows={4} maxLength={2000} className={`${inputClass} resize-y`} {...props("message", { hint: true })} />
       </Field>
 
       <Field id="field-budget" label="Budget range" optional error={errors.budget}>
@@ -230,7 +244,7 @@ export function ContactForm() {
         </select>
       </Field>
 
-      {/* Honeypot: hidden from people and assistive tech, bots tend to fill it. */}
+      {/* Honeypot */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
         <label htmlFor="field-website">Leave this field empty</label>
         <input
@@ -245,33 +259,39 @@ export function ContactForm() {
       </div>
 
       {status.kind === "unconfigured" ? (
-        <div role="alert" className="rounded-lg border border-amber/40 bg-amber/5 p-4 text-sm">
-          <p className="font-medium text-amber">This message was not sent.</p>
-          <p className="mt-1 text-mute">
-            Form delivery is not set up on this deployment yet. Your text is still in the form. Use the button below to
-            send it from your own email app.
+        <div role="alert" className="border border-[#FF6B35]/50 bg-[#FF6B35]/10 p-4 text-xs font-mono">
+          <p className="font-semibold text-[#FF6B35]">This message was not sent.</p>
+          <p className="mt-1 text-[#F5EBDD]">
+            Form delivery is not configured on this environment. Your text is still preserved in the form.
           </p>
-          <a href={mailtoHref(values)} className="btn btn-ghost mt-3">
+          <a href={mailtoHref(values)} className="btn btn-primary rounded-none font-mono text-xs uppercase mt-3 inline-block">
             Send by email instead
           </a>
         </div>
       ) : null}
 
       {status.kind === "error" ? (
-        <div role="alert" className="rounded-lg border border-danger/40 bg-danger/5 p-4 text-sm">
-          <p className="font-medium text-danger">Could not send your message.</p>
-          <p className="mt-1 text-mute">{status.message}</p>
-          <a href={mailtoHref(values)} className="btn btn-ghost mt-3">
+        <div role="alert" className="border border-[#E04535]/50 bg-[#E04535]/10 p-4 text-xs font-mono">
+          <p className="font-semibold text-[#E04535]">Could not send your message.</p>
+          <p className="mt-1 text-[#F5EBDD]">{status.message}</p>
+          <a href={mailtoHref(values)} className="btn btn-primary rounded-none font-mono text-xs uppercase mt-3 inline-block">
             Send by email instead
           </a>
         </div>
       ) : null}
 
-      <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center">
-        <button type="submit" className="btn btn-primary" disabled={busy}>
-          {busy ? "Sending..." : "Send project inquiry"}
+      <div className="pt-2">
+        <button
+          type="submit"
+          className="btn btn-primary w-full !py-3.5 font-mono text-xs uppercase tracking-wider rounded-none font-semibold hover:bg-[#E85B27] transition-all flex items-center justify-center gap-2"
+          disabled={busy}
+        >
+          <span>{busy ? "Transmitting..." : "Send project inquiry"}</span>
+          <ArrowRight className="size-3.5" />
         </button>
-        <p className="text-xs text-mute">Your details are used only to reply to this inquiry.</p>
+        <p className="mt-2 text-center font-mono text-[11px] text-[#B6B1A9]">
+          Direct response from Ritik within 24 hours · No spam.
+        </p>
       </div>
     </form>
   );

@@ -1,86 +1,112 @@
-import { HeroTrace } from "./HeroTrace";
+import { HeroAutomationScene } from "./HeroAutomationScene";
+import { site } from "@/lib/site";
 
-const tools = ["n8n", "Python and FastAPI", "Supabase / PostgreSQL", "OpenAI and Gemini APIs", "Webhooks and REST APIs"];
+const tech = [
+  "n8n",
+  "Python & FastAPI",
+  "Supabase / PostgreSQL",
+  "REST APIs & Webhooks",
+  "WhatsApp Automation",
+];
 
 export function Hero() {
   return (
-    <section id="top" className="pb-12 pt-8 sm:pb-20 sm:pt-20 lg:pb-28">
-      <div className="wrap grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] lg:items-center lg:gap-12">
-        <div className="relative">
-          {/* Ambient Glow */}
-          <div className="absolute -left-10 top-10 -z-10 h-72 w-72 rounded-full bg-signal/10 blur-[100px]" />
-          <div className="absolute left-40 top-32 -z-10 h-72 w-72 rounded-full bg-cobalt/10 blur-[100px]" />
+    <section id="top" className="relative bg-[#171717] pt-4 pb-8 sm:pt-6 sm:pb-10 border-b border-[#393939]">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 grid gap-6 lg:gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,1.2fr)] lg:items-center">
+        {/* Left Editorial Content */}
+        <div className="space-y-3.5">
+          {/* Top Label */}
+          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#B6B1A9]">
+            <span className="size-2 bg-[#FF6B35] flex-none" />
+            <span>INDEPENDENT AUTOMATION ENGINEER</span>
+          </div>
 
-          <p className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-leaf/30 bg-leaf/5 px-3 py-1.5 text-xs font-medium text-leaf backdrop-blur-sm opacity-0">
-            <span aria-hidden className="relative flex size-2 items-center justify-center">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-leaf opacity-75"></span>
-              <span className="relative inline-flex size-1.5 rounded-full bg-leaf"></span>
+          {/* Large Hero Display Headline */}
+          <h1 className="font-display text-[2.25rem] sm:text-[3.25rem] lg:text-[3.5rem] xl:text-[4rem] font-bold text-[#F5EBDD] tracking-[-0.04em] leading-[0.98] text-balance">
+            Less manual work.
+            <span className="block text-[#FF6B35] mt-1">
+              More room to grow.
             </span>
-            Open to freelance projects and full-time roles
-          </p>
-          <h1 className="display animate-fade-in-up delay-100 mt-8 opacity-0 max-w-[16ch]">
-            Build Smarter Business Systems{" "}
-            <span className="text-signal">With AI Automation.</span>
           </h1>
-          <p className="lead animate-fade-in-up delay-200 mt-6 opacity-0 max-w-xl">
-            I build AI agents and automated workflows that help businesses manage leads, streamline
-            operations, and reduce repetitive work.
+
+          {/* Supporting Paragraph */}
+          <p className="text-sm sm:text-base text-[#B6B1A9] max-w-lg leading-relaxed font-normal">
+            I build AI agents and automation systems that connect business tools, handle repetitive workflows, and help teams respond to enquiries faster.
           </p>
-          <p className="animate-fade-in-up delay-300 mt-4 text-sm text-mute opacity-0">
-            Ritik Choudhary &mdash; AI automation developer, based in India.
-          </p>
-          <div className="animate-fade-in-up delay-400 mt-10 flex flex-col gap-4 sm:flex-row sm:items-center opacity-0">
-            <a href="#contact" className="btn btn-primary">
-              Discuss Your Project
+
+          {/* Founder Attribution */}
+          <div className="flex items-center gap-2 font-mono text-xs text-[#B6B1A9]">
+            <span className="text-[#FF6B35] font-bold">BY</span>
+            <span className="text-[#F5EBDD] font-medium">{site.person}</span>
+            <span>·</span>
+            <span>{site.title}</span>
+          </div>
+
+          {/* CTAs and Verified Direct Links with Vibrant Brand Icons */}
+          <div className="pt-0.5 flex flex-wrap items-center gap-2">
+            <a
+              href="#contact"
+              className="btn btn-primary font-mono text-xs uppercase tracking-wider !px-4 !py-2 rounded-none font-semibold hover:bg-[#E85B27] transition-all"
+            >
+              Discuss a Project
             </a>
-            <a href="#projects" className="btn btn-ghost backdrop-blur-sm">
+            <a
+              href="#projects"
+              className="btn btn-secondary-dark font-mono text-xs uppercase tracking-wider !px-3.5 !py-2 rounded-none transition-all"
+            >
               Explore My Work
             </a>
+
+            {/* LinkedIn with Authentic Brand Blue Icon */}
+            <a
+              href={site.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Profile"
+              className="inline-flex items-center gap-1.5 border border-[#393939] bg-[#242424] px-2.5 py-2 font-mono text-xs text-[#F5EBDD] hover:border-[#0A66C2] hover:bg-[#0A66C2]/10 transition-colors"
+            >
+              <svg className="size-3.5 fill-[#0A66C2] flex-none" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+
+            {/* WhatsApp with Authentic Brand Green Icon */}
+            <a
+              href={site.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp Direct Chat"
+              className="inline-flex items-center gap-1.5 border border-[#25D366]/40 bg-[#25D366]/10 px-2.5 py-2 font-mono text-xs text-[#F5EBDD] hover:border-[#25D366] hover:bg-[#25D366]/20 transition-colors"
+            >
+              <svg className="size-3.5 fill-[#25D366] flex-none" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+              </svg>
+              <span>WhatsApp</span>
+            </a>
           </div>
-          <div className="animate-fade-in-up delay-500 mt-12 opacity-0">
-            <p className="text-xs font-medium uppercase tracking-widest text-mute">Tools I build with</p>
-            <ul className="mt-3 flex flex-wrap gap-2">
-              {tools.map((t) => (
-                <li key={t} className="chip border-line-strong/50 bg-surface/50 backdrop-blur-md">
+
+          {/* Technical Stack Pills */}
+          <div className="pt-0.5">
+            <ul className="flex flex-wrap items-center gap-1.5">
+              <li className="font-mono text-[10px] uppercase tracking-widest text-[#B6B1A9] mr-1">
+                STACK:
+              </li>
+              {tech.map((t) => (
+                <li
+                  key={t}
+                  className="border border-[#393939] bg-[#242424] px-2 py-0.5 font-mono text-[10px] text-[#F5EBDD]"
+                >
                   {t}
                 </li>
               ))}
             </ul>
           </div>
         </div>
-        <div className="hidden lg:block animate-fade-in-up delay-500 opacity-0">
-          <HeroTrace />
-        </div>
-        
-        {/* Mobile Workflow Graphic */}
-        <div className="block lg:hidden animate-fade-in-up delay-500 opacity-0 mt-2">
-          <div className="panel p-5 relative overflow-hidden">
-            <div className="absolute -right-10 -top-10 -z-10 h-40 w-40 rounded-full bg-signal/10 blur-[40px]" />
-            <p className="text-sm font-medium mb-5 text-bone">Example: Lead Automation</p>
-            <div className="space-y-5 relative before:absolute before:inset-y-0 before:left-2.5 before:w-px before:bg-line">
-              <div className="flex gap-4 relative">
-                <div className="size-5 rounded-full bg-surface-2 border border-line-strong flex items-center justify-center flex-none mt-0.5 z-10"><div className="size-2 rounded-full bg-mute" /></div>
-                <div>
-                  <p className="text-sm text-bone font-medium">1. Webhook triggered</p>
-                  <p className="text-xs text-mute mt-0.5">New lead captured from website form.</p>
-                </div>
-              </div>
-              <div className="flex gap-4 relative">
-                <div className="size-5 rounded-full bg-surface border border-signal flex items-center justify-center flex-none mt-0.5 z-10"><div className="size-2 rounded-full bg-signal" /></div>
-                <div>
-                  <p className="text-sm text-bone font-medium">2. AI qualifies intent</p>
-                  <p className="text-xs text-mute mt-0.5">LLM extracts budget and generates reply.</p>
-                </div>
-              </div>
-              <div className="flex gap-4 relative">
-                <div className="size-5 rounded-full bg-surface-2 border border-line-strong flex items-center justify-center flex-none mt-0.5 z-10"><div className="size-2 rounded-full bg-mute" /></div>
-                <div>
-                  <p className="text-sm text-bone font-medium">3. CRM & Team Alert</p>
-                  <p className="text-xs text-mute mt-0.5">Saved to database, team pinged on Slack.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+
+        {/* Right 3D Spatial Automation Network Visualization */}
+        <div className="w-full">
+          <HeroAutomationScene />
         </div>
       </div>
     </section>

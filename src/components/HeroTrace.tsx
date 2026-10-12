@@ -1,7 +1,19 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { Pause, Play } from "lucide-react";
+import {
+  Pause,
+  Play,
+  CheckCircle2,
+  AlertTriangle,
+  ArrowDown,
+  MessageSquare,
+  ShieldCheck,
+  Sparkles,
+  Calendar,
+  Database,
+  Send,
+} from "lucide-react";
 import { traceFor, type Scenario } from "@/data/trace";
 import { JsonView } from "./JsonView";
 
@@ -13,10 +25,21 @@ function subscribeReduced(callback: () => void) {
   return () => mq.removeEventListener("change", callback);
 }
 
+const WORKFLOW_STEPS = [
+  { step: "01", label: "WHATSAPP ENQUIRY", icon: MessageSquare, color: "#25D366" },
+  { step: "02", label: "VALIDATE MESSAGE", icon: ShieldCheck, color: "#F59E0B" },
+  { step: "03", label: "CLASSIFY INTENT", icon: Sparkles, color: "#A855F7" },
+  { step: "04", label: "AVAILABILITY CHECK", icon: Calendar, color: "#0EA5E9" },
+  { step: "05", label: "STORE LEAD", icon: Database, color: "#10B981" },
+  { step: "06", label: "HUMAN HANDOFF / REPLY", icon: Send, color: "#FF6B35" },
+];
+
 export function HeroTrace() {
   const [scenario, setScenario] = useState<Scenario>("free");
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [viewJson, setViewJson] = useState(false);
+
   const reduced = useSyncExternalStore(
     subscribeReduced,
     () => window.matchMedia(QUERY).matches,
@@ -24,7 +47,7 @@ export function HeroTrace() {
   );
 
   const stages = traceFor(scenario);
-  const stage = stages[index];
+  const stage = stages[index] || stages[0];
   const playing = !paused && !reduced;
   const last = stages.length - 1;
 
@@ -48,102 +71,221 @@ export function HeroTrace() {
   }
 
   return (
-    <div className="panel overflow-hidden shadow-[0_30px_80px_-40px_rgb(86_212_228/0.25)]">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-4 py-3">
-        <p className="text-sm font-medium">Customer enquiry, step by step</p>
+    <div className="border border-[#393939] bg-[#242424] p-4 sm:p-5 shadow-[0_16px_40px_rgba(0,0,0,0.5)]">
+      {/* Top Header */}
+      <div className="flex flex-wrap items-center justify-between gap-2.5 border-b border-[#393939] pb-3">
         <div className="flex items-center gap-2">
-          <div role="group" aria-label="Scenario" className="flex rounded-lg border border-line-strong p-0.5 text-xs">
+          <span className="font-mono text-[10px] font-semibold tracking-widest text-[#FF6B35] uppercase border border-[#FF6B35]/40 bg-[#FF6B35]/10 px-2 py-0.5">
+            INTERACTIVE DEMO
+          </span>
+          <span className="font-mono text-[11px] text-[#B6B1A9] hidden sm:inline">
+            n8n · Production Trace
+          </span>
+        </div>
+
+        {/* Controls */}
+        <div className="flex items-center gap-2">
+          <div className="flex border border-[#393939] bg-[#171717] p-0.5 text-[11px] font-mono">
             {(
               [
-                ["free", "Slot is free"],
+                ["free", "Slot free"],
                 ["taken", "Slot just taken"],
               ] as const
-            ).map(([value, label]) => (
+            ).map(([s, label]) => (
               <button
-                key={value}
+                key={s}
                 type="button"
-                aria-pressed={scenario === value}
-                onClick={() => changeScenario(value)}
-                className={`rounded-md px-2.5 py-1.5 transition-colors ${
-                  scenario === value ? "bg-surface-2 text-bone" : "text-mute hover:text-bone"
+                onClick={() => changeScenario(s)}
+                aria-pressed={scenario === s}
+                className={`px-2 py-0.5 transition-colors ${
+                  scenario === s
+                    ? "bg-[#FF6B35] text-white font-medium shadow-sm"
+                    : "text-[#B6B1A9] hover:text-[#F5EBDD]"
                 }`}
               >
                 {label}
               </button>
             ))}
           </div>
+
           <button
             type="button"
             onClick={() => setPaused((p) => !p)}
             disabled={reduced}
             aria-label={playing ? "Pause animation" : "Play animation"}
-            className="grid size-8 place-items-center rounded-lg border border-line-strong text-mute transition-colors hover:text-bone disabled:opacity-40"
+            className="grid size-6 place-items-center border border-[#393939] bg-[#171717] text-[#B6B1A9] transition-colors hover:text-white hover:border-[#FF6B35] disabled:opacity-40"
           >
-            {playing ? <Pause className="size-3.5" aria-hidden /> : <Play className="size-3.5" aria-hidden />}
+            {playing ? <Pause className="size-2.5" aria-hidden /> : <Play className="size-2.5" aria-hidden />}
           </button>
         </div>
       </div>
 
-      <div className="grid md:grid-cols-[13.5rem_minmax(0,1fr)]">
-        <ol className="relative border-b border-line p-3 md:border-b-0 md:border-r" aria-label="Processing stages">
-          <span aria-hidden className="absolute bottom-6 left-[1.6rem] top-6 w-px bg-line" />
-          <span
-            aria-hidden
-            className="trace-fill absolute left-[1.6rem] top-6 w-px bg-signal"
-            style={{ height: `calc((100% - 3rem) * ${index / last})` }}
-          />
+      {/* Main Content: Workflow Track + Active Stage Cockpit */}
+      <div className="mt-3.5 grid gap-3.5 lg:grid-cols-[13.5rem_minmax(0,1fr)]">
+        {/* Connected Node Sequence with Colorful Icons */}
+        <div className="space-y-1" aria-label="Processing stages">
           {stages.map((s, i) => {
-            const done = i < index;
             const live = i === index;
+            const done = i < index;
+            const meta = WORKFLOW_STEPS[i] || {
+              step: `0${i + 1}`,
+              label: s.title,
+              icon: MessageSquare,
+              color: "#FF6B35",
+            };
+            const StepIcon = meta.icon;
+
             return (
-              <li key={s.id}>
+              <div key={s.id} className="relative">
                 <button
                   type="button"
+                  aria-label={s.title}
                   onClick={() => choose(i)}
                   aria-current={live ? "step" : undefined}
-                  className={`relative flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left text-sm transition-colors ${
-                    live ? "text-bone" : done ? "text-mute" : "text-mute/80 hover:text-bone"
+                  className={`w-full text-left p-2 transition-all border flex items-center justify-between gap-2 ${
+                    live
+                      ? "bg-[#FF6B35] border-[#FF6B35] text-white shadow-md"
+                      : done
+                      ? "bg-[#171717] border-[#393939] text-[#F5EBDD] hover:border-[#B6B1A9]"
+                      : "bg-[#171717]/70 border-[#393939]/70 text-[#B6B1A9] hover:text-[#F5EBDD]"
                   }`}
                 >
-                  <span
-                    aria-hidden
-                    className={`relative z-10 size-3 flex-none rounded-full border ${
-                      live
-                        ? "trace-dot-live border-signal bg-signal"
-                        : done
-                          ? "border-signal bg-ink"
-                          : "border-line-strong bg-ink"
-                    }`}
-                  />
-                  <span>{s.title}</span>
+                  <div className="flex items-center gap-2 min-w-0">
+                    {/* Vibrant Step Icon */}
+                    <div
+                      className={`size-6 flex-none flex items-center justify-center transition-transform ${
+                        live
+                          ? "bg-white text-[#FF6B35]"
+                          : "border border-[#393939]"
+                      }`}
+                      style={{
+                        backgroundColor: live ? "#FFFFFF" : `${meta.color}15`,
+                        borderColor: live ? "#FFFFFF" : `${meta.color}35`,
+                        color: live ? "#FF6B35" : meta.color,
+                      }}
+                    >
+                      <StepIcon className="size-3" />
+                    </div>
+
+                    <div className="min-w-0">
+                      <p
+                        className={`font-mono text-[9px] uppercase tracking-wider ${
+                          live ? "text-white/90" : "text-[#B6B1A9]"
+                        }`}
+                      >
+                        {meta.step} · {meta.label}
+                      </p>
+                      <p
+                        className={`text-xs font-semibold truncate ${
+                          live ? "text-white" : "text-[#F5EBDD]"
+                        }`}
+                      >
+                        {s.title}
+                      </p>
+                    </div>
+                  </div>
+
+                  {live && (
+                    <span className="size-1.5 bg-white rounded-full animate-ping flex-none" />
+                  )}
                 </button>
-              </li>
+
+                {i < stages.length - 1 && (
+                  <div className="flex justify-center -my-0.5">
+                    <ArrowDown
+                      className={`size-2.5 ${
+                        live ? "text-[#FF6B35]" : "text-[#393939]"
+                      }`}
+                    />
+                  </div>
+                )}
+              </div>
             );
           })}
-        </ol>
+        </div>
 
-        <div className="min-w-0 p-4 sm:p-5">
-          <div key={`${scenario}-${stage.id}`} className="stage-enter">
-            <h2 className="h3">{stage.title}</h2>
-            <p className="mt-1 text-sm text-mute">{stage.caption}</p>
-            <div className="mt-4">
-              <JsonView data={stage.payload} label={`Sample data for stage: ${stage.title}`} />
-            </div>
-            {stage.outcome ? (
-              <p
-                className={`mt-3 text-sm ${stage.outcome.tone === "ok" ? "text-leaf" : "text-amber"}`}
+        {/* Active Stage Inspector */}
+        <div className="border border-[#393939] bg-[#171717] p-3.5 sm:p-4 flex flex-col justify-between">
+          <div>
+            <div className="flex items-start justify-between gap-2 border-b border-[#393939] pb-2.5">
+              <div>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#FF6B35]">
+                  STEP {index + 1} OF {stages.length}
+                </span>
+                <h2 className="font-display text-base sm:text-lg font-bold text-[#F5EBDD]">
+                  {stage.title}
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setViewJson(!viewJson)}
+                className="font-mono text-[10px] text-[#B6B1A9] hover:text-[#FF6B35] border border-[#393939] px-2 py-0.5 uppercase"
               >
-                {stage.outcome.text}
+                {viewJson ? "Summary" : "Raw JSON"}
+              </button>
+            </div>
+
+            <p className="mt-2 text-xs text-[#B6B1A9] leading-relaxed">
+              {stage.caption}
+            </p>
+
+            {/* Payload View */}
+            <div className="mt-3">
+              {viewJson ? (
+                <div className="max-h-40 overflow-y-auto">
+                  <JsonView data={stage.payload} label={`Data for ${stage.title}`} />
+                </div>
+              ) : (
+                <div className="border border-[#393939] bg-[#242424] p-2.5 text-xs font-mono space-y-1">
+                  {Object.entries(stage.payload).map(([k, v]) => (
+                    <div
+                      key={k}
+                      className="flex flex-wrap items-baseline gap-2 border-b border-[#393939]/30 pb-0.5 last:border-b-0 last:pb-0"
+                    >
+                      <span className="text-[#FF6B35] font-medium text-[11px]">
+                        {k}:
+                      </span>
+                      <span className="text-[#F5EBDD] font-sans text-xs break-all">
+                        {typeof v === "object" ? JSON.stringify(v) : String(v)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Outcome & Proof Badge */}
+          <div className="mt-3 pt-2.5 border-t border-[#393939]">
+            {stage.outcome ? (
+              <div
+                className={`p-2 text-xs font-mono flex items-center gap-2 border ${
+                  stage.outcome.tone === "ok"
+                    ? "border-[#FF6B35]/40 bg-[#FF6B35]/10 text-[#F5EBDD]"
+                    : "border-[#E04535]/50 bg-[#E04535]/10 text-[#F5EBDD]"
+                }`}
+              >
+                {stage.outcome.tone === "ok" ? (
+                  <CheckCircle2 className="size-3.5 text-[#FF6B35] flex-none" />
+                ) : (
+                  <AlertTriangle className="size-3.5 text-[#E04535] flex-none" />
+                )}
+                <span className="text-[11px]">{stage.outcome.text}</span>
+              </div>
+            ) : (
+              <p className="text-[10px] font-mono text-[#B6B1A9] flex items-center gap-1.5">
+                <span className="size-1.5 rounded-full bg-[#FF6B35]" />
+                Validating payload against system schema.
               </p>
-            ) : null}
+            )}
           </div>
         </div>
       </div>
 
-      <div className="border-t border-line bg-surface-2/30 px-4 py-3">
-        <p className="text-xs text-mute">
-          <strong className="font-medium text-bone">Interactive Demo:</strong> This is an illustrative simulation using sample data. It is not connected to a live database or WhatsApp system.
-        </p>
+      {/* Footer Info */}
+      <div className="mt-3 pt-2 border-t border-[#393939] flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono text-[#B6B1A9]">
+        <span>Illustrative run with sample data</span>
+        <span className="text-[#F5EBDD]">Human confirmation required</span>
       </div>
     </div>
   );

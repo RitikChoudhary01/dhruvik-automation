@@ -2,6 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { ContactForm } from "@/components/ContactForm";
+import { site } from "@/lib/site";
 
 async function fillValid(user: ReturnType<typeof userEvent.setup>) {
   await user.type(screen.getByLabelText("Name"), "Asha Rao");
@@ -70,7 +71,7 @@ describe("ContactForm", () => {
     await waitFor(() => expect(screen.getByText("This message was not sent.")).toBeInTheDocument());
     expect(screen.queryByText("Message sent")).not.toBeInTheDocument();
     const link = screen.getByRole("link", { name: "Send by email instead" });
-    expect(link.getAttribute("href")).toContain("mailto:choudharyritik145@gmail.com");
+    expect(link.getAttribute("href")).toContain(`mailto:${site.email}`);
     expect(decodeURIComponent(link.getAttribute("href") ?? "")).toContain("Rao Dental");
     // The visitor's text is kept.
     expect(screen.getByLabelText("Name")).toHaveValue("Asha Rao");
